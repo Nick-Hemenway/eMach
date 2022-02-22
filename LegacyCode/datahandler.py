@@ -57,10 +57,18 @@ class DataHandler(do.DataHandler):
         archive = self.get_pareto_designs()
         fitness = []
         free_vars = []
+        rated_power = []
         for data in archive:
             fitness.append(data.objs)
             free_vars.append(data.x)
-        return fitness, free_vars
+            
+            final_state = data.full_results[-1][-1]
+            machine = final_state.design.machine
+            em_results = final_state.conditions.em
+            power = em_results['torque_avg'] * machine.mech_omega /1000
+            rated_power.append(power)
+            
+        return fitness, free_vars, rated_power
 
     def get_designs(self):
         archive = self.load_from_archive()
@@ -69,12 +77,8 @@ class DataHandler(do.DataHandler):
             final_state = data.full_results[-1][-1]
             Ea = final_state.conditions.em["Ea"]
             i = i+1
-            if data.objs[0]<-6 and Ea<10 and data.objs[2]<15:
-                print(i)
+            if data.objs[0]<-6.5 and Ea<5 and data.objs[2]<5:
+                print(final_state.design.machine.name)
                 print(data.objs, Ea)
-        print(i)
                 
-            
-
-
     
