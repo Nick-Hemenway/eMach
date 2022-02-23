@@ -17,7 +17,8 @@ class MachineDesign(Design):
         machine: Holds information on machine dimensions, materials, and nameplate specs
         settings: Operating conditions of machine. Can include speed, current, expected power / torque etc.
     """
-    def __init__(self, machine: 'Machine', settings: Any):
+
+    def __init__(self, machine: "Machine", settings: Any):
         self.machine = machine
         self.settings = settings
 
@@ -30,11 +31,12 @@ class MachineDesigner(Designer):
         fully define a machine.
         settings_handler: Class which converts optimization free variable to machine operating conditions.
     """
-    def __init__(self, arch: 'Architect', settings_handler: 'SettingsHandler'):
+
+    def __init__(self, arch: "Architect", settings_handler: "SettingsHandler"):
         self.arch = arch
         self.settings_handler = settings_handler
 
-    def create_design(self, x: 'tuple') -> 'Design':
+    def create_design(self, x: "tuple") -> "Design":
         """Creates a machine design from free variables.
 
         Args:
@@ -49,12 +51,11 @@ class MachineDesigner(Designer):
 
 
 class SettingsHandler(Protocol):
-    
     @abstractmethod
-    def get_settings(self, x: 'tuple'):
+    def get_settings(self, x: "tuple"):
         raise NotImplementedError
-    
-        
+
+
 class Architect(Protocol):
     """Base class for all machine design creating architect classes.
 
@@ -66,10 +67,10 @@ class Architect(Protocol):
     @abstractmethod
     def create_new_design(self, input_arguments: Any) -> "Machine":
         """Creates a new Machine object and returns it
-        
+
         Args:
             input_arguments: Sny
-        
+
         Returns:
             machine: Machine
         """
@@ -78,10 +79,11 @@ class Architect(Protocol):
 
 class Machine(ABC):
     """Abstract base class for Machine objects"""
+
     @abstractmethod
     def check_required_properties(self):
         pass
-    
+
     @abstractmethod
     def get_missing_properties(self):
         pass
@@ -93,9 +95,10 @@ class MachineEvaluator(Evaluator):
     Attributes:
         steps: Sequential list of steps involved in evaluating a MachineDesign
     """
-    def __init__(self, steps: List['EvaluationStep']):
+
+    def __init__(self, steps: List["EvaluationStep"]):
         self.steps = steps
-    
+
     def evaluate(self, design: Any):
         """Evaluates a MachineDesign
 
@@ -119,8 +122,9 @@ class MachineEvaluator(Evaluator):
 @runtime_checkable
 class EvaluationStep(Protocol):
     """Protocol for an evaluation step"""
+
     @abstractmethod
-    def step(self, state_in: 'State') -> [Any, 'State']:
+    def step(self, state_in: "State") -> [Any, "State"]:
         pass
 
 
@@ -130,6 +134,7 @@ class Conditions:
     This is a dummy class whose purpose is hold attributes required by subsequent steps involved in evaluating a machine
     design.
     """
+
     def __init__(self):
         pass
 
@@ -144,7 +149,8 @@ class State:
         design: machine design used by the next step
         conditions: additional information required for subsequent evaluation steps
     """
-    def __init__(self, design: 'Design', conditions: 'Conditions'):
+
+    def __init__(self, design: "Design", conditions: "Conditions"):
         self.design = design
         self.conditions = conditions
 
@@ -159,12 +165,13 @@ class AnalysisStep(EvaluationStep):
         post_analyzer: class or object which processes the results obtained from the analyzer and packages in a form
         suitable for subsequent steps.
     """
+
     def __init__(self, problem_definition, analyzer, post_analyzer):
         self.problem_definition = problem_definition
         self.analyzer = analyzer
         self.post_analyzer = post_analyzer
 
-    def step(self, state_in: 'State') -> [Any, 'State']:
+    def step(self, state_in: "State") -> [Any, "State"]:
         """Method to evaluate design using a analyzer
 
         Args:
@@ -181,8 +188,9 @@ class AnalysisStep(EvaluationStep):
 
 class ProblemDefinition(Protocol):
     """Protocol for a problem definition"""
+
     @abstractmethod
-    def get_problem(self, state: 'State') -> 'Problem':
+    def get_problem(self, state: "State") -> "Problem":
         pass
 
 
@@ -193,20 +201,23 @@ class Problem:
 
 class Analyzer(Protocol):
     """Protocol for an analyzer"""
+
     @abstractmethod
-    def analyze(self, problem: 'Problem') -> Any:
+    def analyze(self, problem: "Problem") -> Any:
         pass
 
 
 class PostAnalyzer(Protocol):
-    """Protocol for a post analyzer """
+    """Protocol for a post analyzer"""
+
     @abstractmethod
-    def get_next_state(self, results: Any, state_in: 'State') -> 'State':
+    def get_next_state(self, results: Any, state_in: "State") -> "State":
         pass
 
 
 class Error(Exception):
     """Base class for exceptions in this module."""
+
     pass
 
 
@@ -217,6 +228,7 @@ class MissingValueError(Error):
         expression -- input expression in which the error occurred
         message -- explanation of the error
     """
+
     def __init__(self, expression, message):
         self.expression = expression
         self.message = message
