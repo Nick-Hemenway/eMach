@@ -1,6 +1,6 @@
 import numpy as np
 
-from .architect import Architect
+# from .architect import Architect
 from .machines import IM_Machine
 from .winding_layout_im import winding_layout_v2
 import numpy as np
@@ -10,7 +10,7 @@ from specifications.machine_specs.im1_machine_specs import DesignSpec
 __all__ = ['IMArchitectType1']
 
 
-class IMArchitectType1(Architect):
+class IMArchitectType1:
     '''
     This class acts as an interface between the end user and the IM_Machine class.
     Each Architect class has to be tailor made based on the expected free variables
