@@ -173,7 +173,7 @@ class IM_EM_Analysis():
                 d.plot_coil("Coil")
                 # d.plot_airWithinRotorSlots(u"Air Within Rotor Slots")
 
-                if 'VariableStatorSlotDepth' in self.fea_config_dict['which_filter']:
+                if 'VariableStatorSlotDepth' in self.configuration['which_filter']:
                     # set DriveW_CurrentAmp using the calculated stator slot area.
                     print('[A]: DriveW_CurrentAmp is updated.')
 

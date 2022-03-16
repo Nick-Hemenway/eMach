@@ -5460,6 +5460,7 @@ class TrimDrawer(object):
 
 
         # This is necessary if you want to do MODEL_ROTATE
+        self.im.MODEL_ROTATE = False
         if self.im.MODEL_ROTATE:
             self.doc.GetSelection().Clear()
             self.doc.GetSelection().Add(sketch.GetItem("Horizontality"))
@@ -5747,7 +5748,7 @@ class TrimDrawer(object):
                             l3.GetStartVertex().GetX(), l3.GetStartVertex().GetY())
 
 
-            from CrossSectStator import get_area_polygon
+            from .CrossSectStator import get_area_polygon
             # print(  sketch.GetItem("Line").GetStartVertex().GetX(), sketch.GetItem("Line").GetStartVertex().GetY(),
             #         sketch.GetItem("Line").GetEndVertex().GetX(), sketch.GetItem("Line").GetEndVertex().GetY(),
             #         sketch.GetItem("Line.2").GetStartVertex().GetX(), sketch.GetItem("Line.2").GetStartVertex().GetY(),
