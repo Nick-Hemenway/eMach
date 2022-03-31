@@ -101,7 +101,8 @@ class IMArchitectType1:
 
             'DriveW_poles':  2*self.__design_spec['p'],
             'DriveW_zQ': 10,
-
+            'DriveW_Rs' : 1e-3, # Place holder, Replace this with actual parameters
+            'BeariW_Rs' : 0.5e-3,
             # Not going to consider resistance for now
             # 'DriveW_Rs': free_variables['DriveW_Rs'],
 
@@ -109,6 +110,7 @@ class IMArchitectType1:
             'DriveW_CurrentAmpUsed': 127.89733 * 0.975,
             'BeariW_CurrentAmpUsed': 127.89733 * 0.025,
             'DriveW_Freq': 500,
+            'BeariW_Freq': 500,
 
             'Bar_Conductivity' : 47619047.61904761,
             'stack_length': free_variables['stack_length'],
@@ -125,8 +127,14 @@ class IMArchitectType1:
             'use_drop_shape_rotor_bar': self.__design_spec['use_drop_shape_rotor_bar'],
             'PoleSpecificNeutral': self.__design_spec['PoleSpecificNeutral'],
             'number_parallel_branch': self.__design_spec['number_parallel_branch'],
+            'number_winding_layer' : self.__winding.number_winding_layer,
             'DPNV_or_SEPA': self.__design_spec['DPNV_or_SEPA'],
-            'CommutatingSequenceD': self.__winding.CommutatingSequenceD
+            'CommutatingSequenceD': self.__winding.CommutatingSequenceD,
+            'CommutatingSequenceB' : self.__winding.CommutatingSequenceB,
+            # 'grouping_AC' : self.__winding.grouping_AC
+            # 'DriveW_CurrentAmp' : self.__design_spec['DriveW_CurrentAmp'],
+
+            # 'DriveW_CurrentAmp' : self.__design_spec['DriveW_CurrentAmp'],
 
         }
 
@@ -148,6 +156,9 @@ class IMArchitectType1:
             'Iq_rated_ratio': 0.975,
             'Rated_current': im_parameters['DriveW_CurrentAmp'],
             'ps': self.__design_spec['ps'],
+            'fill_factor' : self.__design_spec['fill_factor'],
+            'Js' : self.__design_spec['Js'],
+            'BeariW_CurrentAmp' : 20.12,
         }
 
         machine_variant = IM_Machine(im_parameters, im_material, im_nameplate)

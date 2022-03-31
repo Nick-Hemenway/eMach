@@ -43,7 +43,8 @@ DesignSpec = {
             "Ix_ratio"        : 0.975,
             "kw1" : 0.8666,
             "number_parallel_branch" : 2,
-            "rated_speed" : 8645
+            "rated_speed" : 8645,
+            "fill_factor" : 0.4
 
     }
 

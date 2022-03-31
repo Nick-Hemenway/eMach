@@ -39,7 +39,9 @@ FEMM_FEA_Configuration = {
     "ignore_rotor_current_density_constraint": False,
     "MODEL_ROTATE" : False,
     "which_filter": "VariableStatorSlotDepth",
-
+    "model_name_prefix" : "PS",
+    "max_nonlinear_iteration" : 50,
+    'bool_3PhaseCurrentSource' : False,
     'run_folder'     : os.path.abspath('') + '/run_data/' ,  #storing FEM files path
     'JMAG_csv_folder': os.path.abspath('') + '/run_data/JMAG_csv/',
     }

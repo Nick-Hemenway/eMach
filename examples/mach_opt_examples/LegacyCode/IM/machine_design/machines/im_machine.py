@@ -117,7 +117,16 @@ class IM_Machine(Machine, IM_Rotor, Stator_IM, DPNVWinding_IM):
                 ,'DriveW_zQ'
                 ,'End_Ring_Resistance'
                 , 'Js'
+                , 'fill_factor'
                 )
+
+    @property
+    def fill_factor(self):
+        return self._nameplate_dict['fill_factor']
+
+    @property
+    def Js(self):
+        return self._nameplate_dict['Js']
 
     @property
     def Length_AirGap(self):
