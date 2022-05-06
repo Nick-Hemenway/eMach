@@ -2,6 +2,7 @@ import sys
 import pickle
 
 sys.path.append("..")
+sys.path.append("../../../..")
 
 import mach_opt as do
 
