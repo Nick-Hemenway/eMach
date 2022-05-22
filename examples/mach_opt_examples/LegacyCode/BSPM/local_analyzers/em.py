@@ -260,7 +260,7 @@ class BSPM_EM_Analysis():
             model.GetSetList().GetSet(name).AddSelected(sel)
 
         # Shaft
-        add_part_to_set('ShaftSet', 0.0, 0.0, ID=id_shaft)  # 坐标没用，不知道为什么，而且都给了浮点数了
+        add_part_to_set('ShaftSet', 0.0, 0.0, ID=id_shaft) 
 
         # Create Set for right layer
         Angle_StatorSlotSpan = 360 / self.machine_variant.Q
@@ -564,48 +564,6 @@ class BSPM_EM_Analysis():
             "ShearModulusYZ", 0)
         app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue(
             "ShearModulusZX", 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G11",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G12",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G13",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G14",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G15",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G16",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G22",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G23",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G24",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G25",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G26",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G33",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G34",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G35",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G36",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G44",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G45",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G46",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G55",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G56",
-                                                                                                                 0)
-        app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue("G66",
-                                                                                                                 0)
         app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue(
             "MagnetizationSaturated2", 0)
         app.GetMaterialLibrary().GetUserMaterial(self.machine_variant.stator_iron_mat['core_material']).SetValue(
@@ -642,7 +600,7 @@ class BSPM_EM_Analysis():
         study.SetMaterialByName(u"Magnet", u"{}".format(self.machine_variant.magnet_mat['magnet_material']))
         study.GetMaterial(u"Magnet").SetValue(u"EddyCurrentCalculation", 1)
         study.GetMaterial(u"Magnet").SetValue(u"Temperature", self.machine_variant.magnet_mat[
-            'magnet_max_temperature'])  # TEMPERATURE (There is no 75 deg C option)
+            'magnet_max_temperature'])
 
         study.GetMaterial(u"Magnet").SetValue(u"Poles", 2 * self.machine_variant.p)
 

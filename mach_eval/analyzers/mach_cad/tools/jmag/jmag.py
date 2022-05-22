@@ -414,23 +414,21 @@ class JmagDesigner(
         else:
             raise Exception("Unsupported angle unit")
 
-    def set_rotation(self,object_refs,speed,angle):
+    def set_rotation(self, object_refs, speed, angle):
         # Conditions - Motion
-        self.study.CreateCondition("RotationMotion","RotCon")  
-        # study.GetCondition(u"RotCon").SetXYZPoint(u"", 0, 0, 1) # megbox warning
+        self.study.CreateCondition("RotationMotion", "RotCon")
         self.study.GetCondition("RotCon").SetValue("AngularVelocity", int(speed))
         self.study.GetCondition("RotCon").ClearParts()
         for ref in object_refs:
-            self.study.GetCondition("RotCon").AddSet(self.model.GetSetList().GetSet("Motion_Region"), 0)
-            #TODO: This need to change....
+            self.study.GetCondition("RotCon").AddPart(ref)
+            # TODO: This need to change....
         # Implementation of id=0 control:
         #   d-axis initial position is self.alpha_m*0.5
         #   The U-phase current is sin(omega_syn*t) = 0 at t=0.
         self.study.GetCondition("RotCon").SetValue(u"InitialRotationAngle", angle)
         # add 360/(2p) deg to reverse the initial magnetizing direction to make torque positive.
-        
-    def set_DPNVcurrent(self,object_refs,AmpT,AmpS,freq):
-        # TODO draw the circuit and stuff.....
-        
-    
-    
+
+    def set_DPNVcurrent(self, object_refs, AmpT, AmpS, freq):
+        pass
+        # TODO draw the circuit and stuff
+
